@@ -33,13 +33,13 @@ function performMagic(one, two, three, four, five) {
 
 	alert("mystery: " + mystery);
 
-	var private = mystery[1];
 	var public = mystery[0];
+	var private = mystery[1];
 	var diff = 0;
 
 	if(VALUES.indexOf(getValue(mystery[1])) - VALUES.indexOf(getValue(mystery[0])) > 6) {
-		public = mystery[0];
-		private = mystery[1];
+		public = mystery[1];
+		private = mystery[0];
 		diff = 13 - (VALUES.indexOf(getValue(mystery[1])) - VALUES.indexOf(getValue(mystery[0])));
 	}
 	else {
