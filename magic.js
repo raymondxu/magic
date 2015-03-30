@@ -1,5 +1,7 @@
-VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-SUITS = ["C", "H", "S", "D"]
+VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+SUITS = ["D", "C", "H", "S"];
+PI = "31415926535897932384626433";
+i = 0;
 
 $(".go").on("click", function() {
 	var one = $("#one").val();
@@ -12,12 +14,12 @@ $(".go").on("click", function() {
 });
 
 function performMagic(one, two, three, four, five) {
-	var cards = [one, two, three, four, five]
-	var mystery = []
+	var cards = [one, two, three, four, five];
+	var mystery = [];
 
 	cards.sort(function(a, b) {
 		return getStrength(a) - getStrength(b);
-	})
+	});
 
 	alert(cards);
 
@@ -29,14 +31,84 @@ function performMagic(one, two, three, four, five) {
 		}
 	}
 
-	alert(mystery);
-	var key = mystery[0];
+	alert("mystery: " + mystery);
+
+	var private = mystery[1];
+	var public = mystery[0];
+	var diff = 0;
 
 	if(VALUES.indexOf(getValue(mystery[1])) - VALUES.indexOf(getValue(mystery[0])) > 6) {
-		key = mystery[1];
+		public = mystery[0];
+		private = mystery[1];
+		diff = 13 - (VALUES.indexOf(getValue(mystery[1])) - VALUES.indexOf(getValue(mystery[0])));
+	}
+	else {
+		diff = VALUES.indexOf(getValue(mystery[1])) - VALUES.indexOf(getValue(mystery[0]));
 	}
 
-	alert(key);
+	alert("public: " + public);
+	alert("private: " + private);
+	alert("diff:" + diff);
+
+	cards.splice(cards.indexOf(private), 1);
+	cards.splice(cards.indexOf(public), 1);
+
+	cards = jumble(cards, diff);
+
+	alert("cards before adding suit card in place: " + cards);
+
+	cards.splice(getKeyIndex(), 0, public);
+
+	alert("cards final: " + cards);
+}
+
+function jumble(arr, num) {
+	jumbledArr = [];
+	arr.sort(function(a, b) {
+		return getStrength(a) - getStrength(b);
+	});
+	alert("prejumble: " + arr);
+
+	if(num == 1) {
+		jumbledArr.push(arr[0]);
+		jumbledArr.push(arr[1]);
+		jumbledArr.push(arr[2]);
+	}
+	else if(num == 2) {
+		jumbledArr.push(arr[0]);
+		jumbledArr.push(arr[2]);
+		jumbledArr.push(arr[1]);
+	}
+	else if(num == 3) {
+		jumbledArr.push(arr[1]);
+		jumbledArr.push(arr[0]);
+		jumbledArr.push(arr[2]);
+	}
+	else if(num == 4) {
+		jumbledArr.push(arr[1]);
+		jumbledArr.push(arr[2]);
+		jumbledArr.push(arr[0]);
+		
+	}
+	else if(num == 5) {
+		jumbledArr.push(arr[2]);
+		jumbledArr.push(arr[0]);
+		jumbledArr.push(arr[1]);
+	}
+	else if(num == 6) {
+		jumbledArr.push(arr[2]);
+		jumbledArr.push(arr[1]);
+		jumbledArr.push(arr[0]);
+	}
+
+	alert("postjumble: " + jumbledArr);
+	return jumbledArr;
+}
+
+function getKeyIndex() {
+	var index = PI.substring(i, i + 1);
+	i += 1;
+	return parseInt(index) % 4;
 }
 
 function getValue(card) {
