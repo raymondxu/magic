@@ -9,7 +9,7 @@ $(".go").on("click", function() {
 	var three = $("#three").val();
 	var four = $("#four").val();
 	var five = $("#five").val();
-
+	$("#input").hide();
 	performMagic(one, two, three, four, five)
 });
 
@@ -21,7 +21,7 @@ function performMagic(one, two, three, four, five) {
 		return getStrength(a) - getStrength(b);
 	});
 
-	alert(cards);
+	console.log(cards);
 
 	for(var i = 0; i < cards.length - 1; i++) {
 		if(getSuit(cards[i]) === getSuit(cards[i + 1])) {
@@ -31,7 +31,7 @@ function performMagic(one, two, three, four, five) {
 		}
 	}
 
-	alert("mystery: " + mystery);
+	console.log("mystery: " + mystery);
 
 	var public = mystery[0];
 	var private = mystery[1];
@@ -46,20 +46,20 @@ function performMagic(one, two, three, four, five) {
 		diff = VALUES.indexOf(getValue(mystery[1])) - VALUES.indexOf(getValue(mystery[0]));
 	}
 
-	alert("public: " + public);
-	alert("private: " + private);
-	alert("diff:" + diff);
+	console.log("public: " + public);
+	console.log("private: " + private);
+	console.log("diff:" + diff);
 
 	cards.splice(cards.indexOf(private), 1);
 	cards.splice(cards.indexOf(public), 1);
 
 	cards = jumble(cards, diff);
 
-	alert("cards before adding suit card in place: " + cards);
+	console.log("cards before adding suit card in place: " + cards);
 
 	cards.splice(getKeyIndex(), 0, public);
 
-	alert("cards final: " + cards);
+	document.getElementById("output").innerHTML = cards;
 }
 
 function jumble(arr, num) {
@@ -67,7 +67,7 @@ function jumble(arr, num) {
 	arr.sort(function(a, b) {
 		return getStrength(a) - getStrength(b);
 	});
-	alert("prejumble: " + arr);
+	console.log("prejumble: " + arr);
 
 	if(num == 1) {
 		jumbledArr.push(arr[0]);
@@ -101,7 +101,6 @@ function jumble(arr, num) {
 		jumbledArr.push(arr[0]);
 	}
 
-	alert("postjumble: " + jumbledArr);
 	return jumbledArr;
 }
 

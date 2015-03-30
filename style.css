@@ -1,0 +1,19 @@
+.container {
+	text-align: center;
+}
+
+.instructions {
+	margin: 50px;
+	font-size: 30px;
+	font-family: Helvetica;
+	font-weight: 100;
+}
+
+.go {
+	margin: 50px;
+	height: 100px;
+	width: 300px;
+	font-size: 30px;
+	font-family: Helvetica;
+	font-weight: 100;
+}
