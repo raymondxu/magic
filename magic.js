@@ -13,6 +13,13 @@ $(".go").on("click", function() {
 	performMagic(one, two, three, four, five)
 });
 
+/**
+ * Takes 5 cards and outputs 4 of them in a manner that communicates
+ * to the magician the identity of the 5th card. To learn the underlying
+ * mechanism of this trick, visit: http://www.jstor.org/stable/25678404
+ * or attempt to derive the method from this code. This JavaScript document is 
+ * intentionally left uncommented.
+ */
 function performMagic(one, two, three, four, five) {
 	var cards = [one, two, three, four, five];
 	var mystery = [];
