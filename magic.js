@@ -3,7 +3,7 @@ SUITS = ["D", "C", "H", "S"];
 PI = "31415926535897932384626433";
 i = 0;
 
-$(".go").on("click", function() {
+$("#go").on("click", function() {
 	var one = $("#one").val();
 	var two = $("#two").val();
 	var three = $("#three").val();
@@ -11,6 +11,13 @@ $(".go").on("click", function() {
 	var five = $("#five").val();
 	$("#input").hide();
 	performMagic(one, two, three, four, five)
+	$("#again").show();
+});
+
+$("#again").on("click", function() {
+	$("#input").show();
+	$("#again").hide();
+	document.getElementById("output").innerHTML = "";
 });
 
 /**
@@ -55,6 +62,7 @@ function performMagic(one, two, three, four, five) {
 
 	console.log("public: " + public);
 	console.log("private: " + private);
+	alert("Your card is: " + private);
 	console.log("diff:" + diff);
 
 	cards.splice(cards.indexOf(private), 1);
