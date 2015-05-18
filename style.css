@@ -1,5 +1,8 @@
 .container {
 	text-align: center;
+	margin-top: 80px;
+	margin-left: 15%;
+	width: 70%;
 }
 
 .instructions {
@@ -11,22 +14,30 @@
 
 .btn {
 	margin: 50px;
-	height: 100px;
+	height: 80px;
 	width: 300px;
 	font-size: 30px;
 	font-family: Helvetica;
 	font-weight: 100;
 }
 
-#again {
+#conclusion {
 	display: none;
 }
 
 #output {
-	margin-top: 100px;
-	margin-bottom: 50px;
-	font-size: 30px;
+	margin: 50px;
+	font-size: 40px;
 	font-family: Helvetica;
 	font-weight: 100;
 	color: green;
+}
+
+.counter {
+	margin-bottom: 30px;
+}
+
+.card-input {
+	margin: 4px;
+	width: 60%;
 }
