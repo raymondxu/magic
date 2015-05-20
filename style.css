@@ -41,3 +41,18 @@
 	margin: 4px;
 	width: 60%;
 }
+
+@media (max-width: 640px) {
+	.container {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	.btn {
+		margin: 20px;
+		height: 50px;
+		width: 40%;
+		font-size: 18px;
+	}
+}
