@@ -2,19 +2,31 @@ var VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 var SUITS = ['D', 'C', 'H', 'S'];
 var PI = '31415926535897932384626433';
 var i = 0;
+var submit = true;
+
+$("#input").keyup(function(event) {
+    if (submit && event.keyCode == 13) {
+        $("#go").click();
+    }
+});
 
 $('#go').on('click', function() {
+	submit = false;
+
 	var one = $('#one').val();
 	var two = $('#two').val();
 	var three = $('#three').val();
 	var four = $('#four').val();
 	var five = $('#five').val();
+
 	$('#input').hide();
 	performMagic(one, two, three, four, five)
 	$('#conclusion').show();
 });
 
 $('#again').on('click', function() {
+	submit = true;
+
 	$('#input').show();
 	$('#conclusion').hide();
 	document.getElementById('output').innerHTML = '';

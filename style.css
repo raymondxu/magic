@@ -49,10 +49,23 @@
 		width: 100%;
 	}
 
+	.instructions {
+		margin: 10px;
+		font-size: 10px;
+	}
+
+	.card-input {
+		width: 80%;
+	}
+
 	.btn {
 		margin: 20px;
 		height: 50px;
 		width: 40%;
 		font-size: 18px;
+	}
+
+	#output {
+		font-size: 25px;
 	}
 }
