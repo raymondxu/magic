@@ -1,12 +1,20 @@
+/**
+ * Takes 5 cards and outputs 4 of them in a manner that communicates
+ * to the magician the identity of the 5th card. To learn the underlying
+ * mechanism of this trick, visit: http://www.jstor.org/stable/25678404
+ * or attempt to derive the method from this code. This JavaScript document is 
+ * intentionally left uncommented as an exercise to the reader.
+ */
+
 var VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 var SUITS = ['D', 'C', 'H', 'S'];
 var PI = '31415926535897932384626433';
 var i = 0;
 var submit = true;
 
-$("#input").keyup(function(event) {
-    if (submit && event.keyCode == 13) {
-        $("#go").click();
+$('#input').keyup(function(event) {
+    if (submit && event.keyCode === 13) {
+        $('#go').click();
     }
 });
 
@@ -19,9 +27,11 @@ $('#go').on('click', function() {
 	var four = $('#four').val();
 	var five = $('#five').val();
 
-	$('#input').hide();
-	performMagic(one, two, three, four, five)
-	$('#conclusion').show();
+	if (isAllValid(one, two, three, four, five)) {
+		$('#input').hide();
+		performMagic(one, two, three, four, five)
+		$('#conclusion').show();
+	}
 });
 
 $('#again').on('click', function() {
@@ -29,18 +39,28 @@ $('#again').on('click', function() {
 
 	$('#input').show();
 	$('#conclusion').hide();
+
 	document.getElementById('output').innerHTML = '';
 	document.getElementById('addendum').innerHTML = i;
 });
 
-/**
- * Takes 5 cards and outputs 4 of them in a manner that communicates
- * to the magician the identity of the 5th card. To learn the underlying
- * mechanism of this trick, visit: http://www.jstor.org/stable/25678404
- * or attempt to derive the method from this code. This JavaScript document is 
- * intentionally left uncommented.
- */
-var performMagic = function (one, two, three, four, five) {
+function isAllValid(one, two, three, four, five) {
+	return isValid(one) &&
+		   isValid(two) &&
+		   isValid(three) &&
+		   isValid(four) &&
+		   isValid(five);
+}
+
+function isValid(card) {
+	if (getStrength(card) === null) {
+		alert(card + " is not a valid card.");
+		return false;
+	}
+	return true;
+}
+
+function performMagic(one, two, three, four, five) {
 	var cards = [one, two, three, four, five];
 	var mystery = [];
 
@@ -78,7 +98,7 @@ var performMagic = function (one, two, three, four, five) {
 	document.getElementById('output').innerHTML = cards;
 }
 
-var jumble = function(arr, num) {
+function jumble(arr, num) {
 	jumbledArr = [];
 	arr.sort(function(a, b) {
 		return getStrength(a) - getStrength(b);
@@ -119,20 +139,34 @@ var jumble = function(arr, num) {
 	return jumbledArr;
 }
 
-var getKeyIndex = function() {
+function getKeyIndex() {
 	var index = PI.substring(i, i + 1);
 	i += 1;
 	return parseInt(index) % 4;
 }
 
-var getValue = function(card) {
-	return card.substring(0, card.length - 1);
+function getValue(card) {
+	var VALUE_MAPPER = {
+		'1': 'A', 'a': 'A',
+		'11': 'J', 'j': 'J',
+		'12': 'Q', 'q': 'Q',
+		'13': 'K', 'k': 'K'
+	};
+	var rawValue = card.substring(0, card.length - 1);
+
+	if (rawValue in VALUE_MAPPER) {
+		return VALUE_MAPPER[rawValue];
+	}
+	return rawValue;
 }
 
-var getSuit = function(card) {
+function getSuit(card) {
 	return card.substring(card.length - 1).toUpperCase();
 }
 
-var getStrength = function(card) {
-	return ((SUITS.indexOf(getSuit(card)) + 1) * 14) + (VALUES.indexOf(getValue(card)) + 1);
+function getStrength(card) {
+	if (SUITS.indexOf(getSuit(card)) === -1 || VALUES.indexOf(getValue(card)) === -1) {
+		return null;
+	}
+	return ((SUITS.indexOf(getSuit(card)) + 1) * (VALUES.length + 1)) + (VALUES.indexOf(getValue(card)) + 1);
 }
