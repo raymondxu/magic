@@ -16,9 +16,18 @@
 	margin: 50px;
 	height: 80px;
 	width: 300px;
-	font-size: 30px;
+	border: 0;
+	border-radius: 10px;
+	background-color: #FF8500;
+	font-size: 2rem;
 	font-family: Helvetica;
 	font-weight: 100;
+	color: #FFFFFF;
+}
+
+.btn:hover {
+	background-color: #E87700;
+	cursor: pointer;
 }
 
 #conclusion {
@@ -27,19 +36,30 @@
 
 #output {
 	margin: 50px;
-	font-size: 40px;
+	font-size: 2rem;
 	font-family: Helvetica;
 	font-weight: 100;
 	color: green;
 }
 
 .counter {
+	font-size: 1rem;
+	font-family: Helvetica;
+	font-weight: 100;
 	margin-bottom: 30px;
 }
 
 .card-input {
+	font-size: 1rem;
 	margin: 4px;
 	width: 60%;
+	padding: 10px;
+  	border: solid 3px #C9C9C9;
+}
+
+.card-input:focus {
+	outline: none;
+	border-color: #FF8500;
 }
 
 @media (max-width: 640px) {
@@ -55,8 +75,12 @@
 	}
 
 	.card-input {
+		width: 70%;
 		margin-left: auto;
 		margin-right: auto;
+		font-size: .75rem;
+		padding: 5px;
+		border-width: 2px;
 	}
 
 	.btn {
