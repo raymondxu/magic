@@ -7,7 +7,7 @@
 
 .instructions {
 	margin: 50px;
-	font-size: 30px;
+	font-size: 1.75rem;
 	font-family: Helvetica;
 	font-weight: 100;
 }
@@ -57,6 +57,10 @@
   	border: solid 3px #C9C9C9;
 }
 
+.card-input:hover {
+	background-color: #FDFDFD;
+}
+
 .card-input:focus {
 	outline: none;
 	border-color: #FF8500;
@@ -71,7 +75,7 @@
 
 	.instructions {
 		margin: 10px;
-		font-size: 12px;
+		font-size: 1rem;
 	}
 
 	.card-input {
@@ -87,10 +91,10 @@
 		margin: 20px;
 		height: 50px;
 		width: 40%;
-		font-size: 18px;
+		font-size: 1rem;
 	}
 
 	#output {
-		font-size: 25px;
+		font-size: 1.5rem;
 	}
 }
